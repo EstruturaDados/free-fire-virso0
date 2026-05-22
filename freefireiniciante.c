@@ -51,6 +51,16 @@ void cadastrarItem(struct Item mochila[], int *totalItens) {
     printf("\nItem cadastrado com sucesso!\n");
 
     listarItens(mochila, *totalItens);
+
+// Função para buscar um item pelo nome
+int buscarItem(struct Item mochila[], int totalItens, const char *nomeBuscar) {
+    for (int i = 0; i < totalItens; i++) {
+        if (strcmp(mochila[i].nome, nomeBuscar) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
 }
 // Função para remover um item da mochila
 void removerItem(struct Item mochila[], int *totalItens) {
