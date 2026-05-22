@@ -10,6 +10,7 @@ struct Item {
     char tipo[20];
     int quantidade;
 };
+
 // Função para listar todos os itens cadastrados
 void listarItens(struct Item mochila[], int totalItens) {
     printf("\n========== MOCHILA ==========\n");
@@ -27,6 +28,7 @@ void listarItens(struct Item mochila[], int totalItens) {
 
     printf("=============================\n");
 }
+
 // Função para cadastrar um novo item
 void cadastrarItem(struct Item mochila[], int *totalItens) {
 
@@ -51,17 +53,18 @@ void cadastrarItem(struct Item mochila[], int *totalItens) {
     printf("\nItem cadastrado com sucesso!\n");
 
     listarItens(mochila, *totalItens);
+}
 
-    // Função para buscar um item pelo nome
-    int buscarItem(struct Item mochila[], int totalItens, const char *nomeBuscar) {
-        for (int i = 0; i < totalItens; i++) {
-            if (strcmp(mochila[i].nome, nomeBuscar) == 0) {
-                return i;
-            }
+// Função para buscar um item pelo nome
+int buscarItem(struct Item mochila[], int totalItens, const char *nomeBuscar) {
+    for (int i = 0; i < totalItens; i++) {
+        if (strcmp(mochila[i].nome, nomeBuscar) == 0) {
+            return i;
         }
-        return -1;
+    }
+    return -1;
 }
-}
+
 // Função para remover um item da mochila
 void removerItem(struct Item mochila[], int *totalItens) {
     char nomeRemover[30];
@@ -92,7 +95,7 @@ void removerItem(struct Item mochila[], int *totalItens) {
 
     listarItens(mochila, *totalItens);
 }
-//função main principal contendo o menu da mochila 
+
 int main() {
 
     struct Item mochila[MAX_ITENS];
@@ -114,7 +117,7 @@ int main() {
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
-                switch (opcao) {
+        switch (opcao) {
 
             case 1:
                 cadastrarItem(mochila, &totalItens);
