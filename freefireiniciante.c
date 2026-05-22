@@ -10,7 +10,6 @@ struct Item {
     char tipo[20];
     int quantidade;
 };
-
 // Função para listar todos os itens cadastrados
 void listarItens(struct Item mochila[], int totalItens) {
     printf("\n========== MOCHILA ==========\n");
@@ -27,4 +26,29 @@ void listarItens(struct Item mochila[], int totalItens) {
     }
 
     printf("=============================\n");
+}
+// Função para cadastrar um novo item
+void cadastrarItem(struct Item mochila[], int *totalItens) {
+
+    if (*totalItens >= MAX_ITENS) {
+        printf("\nA mochila esta cheia!\n");
+        return;
+    }
+
+    printf("\n=== CADASTRO DE ITEM ===\n");
+
+    printf("Nome do item: ");
+    scanf(" %[^\n]", mochila[*totalItens].nome);
+
+    printf("Tipo do item (arma, cura, municao...): ");
+    scanf(" %[^\n]", mochila[*totalItens].tipo);
+
+    printf("Quantidade: ");
+    scanf("%d", &mochila[*totalItens].quantidade);
+
+    (*totalItens)++;
+
+    printf("\nItem cadastrado com sucesso!\n");
+
+    listarItens(mochila, *totalItens);
 }
