@@ -52,3 +52,33 @@ void cadastrarItem(struct Item mochila[], int *totalItens) {
 
     listarItens(mochila, *totalItens);
 }
+// Função para remover um item da mochila
+void removerItem(struct Item mochila[], int *totalItens) {
+    char nomeRemover[30];
+
+    if (*totalItens == 0) {
+        printf("\nNao ha itens para remover.\n");
+        return;
+    }
+
+    printf("\nDigite o nome do item que deseja remover: ");
+    scanf(" %[^\n]", nomeRemover);
+
+    int posicao = buscarItem(mochila, *totalItens, nomeRemover);
+
+    if (posicao == -1) {
+        printf("\nItem nao encontrado.\n");
+    } else {
+
+        // Move os itens para preencher o espaço vazio
+        for (int i = posicao; i < *totalItens - 1; i++) {
+            mochila[i] = mochila[i + 1];
+        }
+
+        (*totalItens)--;
+
+        printf("\nItem removido com sucesso!\n");
+    }
+
+    listarItens(mochila, *totalItens);
+}
