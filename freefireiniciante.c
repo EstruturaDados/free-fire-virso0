@@ -103,3 +103,30 @@ int main() {
 
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
+
+                switch (opcao) {
+
+            case 1:
+                cadastrarItem(mochila, &totalItens);
+                break;
+
+            case 2:
+                removerItem(mochila, &totalItens);
+                break;
+
+            case 3:
+                listarItens(mochila, totalItens);
+                break;
+
+            case 0:
+                printf("\nEncerrando sistema...\n");
+                break;
+
+            default:
+                printf("\nOpcao invalida. Tente novamente.\n");
+        }
+
+    } while (opcao != 0);
+
+    return 0;
+}
