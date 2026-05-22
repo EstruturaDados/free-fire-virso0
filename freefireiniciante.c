@@ -82,3 +82,24 @@ void removerItem(struct Item mochila[], int *totalItens) {
 
     listarItens(mochila, *totalItens);
 }
+//função main principal contendo o menu da mochila 
+int main() {
+
+    struct Item mochila[MAX_ITENS];
+    int totalItens = 0;
+    int opcao;
+
+    do {
+
+        printf("\n========= MOCHILA DE SOBREVIVENCIA =========\n");
+
+        // Contador de itens na mochila
+        printf("Itens armazenados: %d/%d\n", totalItens, MAX_ITENS);
+
+        printf("1 - Cadastrar item\n");
+        printf("2 - Remover item\n");
+        printf("3 - Listar itens\n");
+        printf("0 - Sair\n");
+
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
