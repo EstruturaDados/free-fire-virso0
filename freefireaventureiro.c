@@ -279,3 +279,152 @@ char nome[]
     "\nNao encontrado\n"
     );
 }
+// ===============================
+// MAIN ORIGINAL + LISTA
+// ===============================
+
+int main() {
+
+    struct Item mochila[MAX_ITENS];
+
+    int totalItens=0;
+
+    struct No *lista=NULL;
+
+    int opcao;
+
+    char nomeBusca[30];
+
+    do {
+
+        printf(
+        "\n===== MOCHILA DE SOBREVIVENCIA =====\n"
+        );
+
+        printf(
+        "Itens: %d/%d\n",
+        totalItens,
+        MAX_ITENS
+        );
+
+        printf(
+        "1-Cadastrar\n"
+        );
+
+        printf(
+        "2-Remover\n"
+        );
+
+        printf(
+        "3-Buscar item por nome\n"
+        );
+
+        printf(
+        "4-Buscar itens na mochila\n"
+        );
+
+        printf(
+        "0-Sair\n"
+        );
+
+        scanf("%d",&opcao);
+
+        switch(opcao) {
+
+            case 1:
+
+                cadastrarItem(
+                mochila,
+                &totalItens
+                );
+
+                inserirLista(
+                &lista,
+                mochila[
+                totalItens-1
+                ]
+                );
+
+                break;
+
+            case 2:
+
+                removerItem(
+                mochila,
+                &totalItens
+                );
+
+                break;
+
+            case 3:
+
+            ordenarItens(
+            mochila,
+            totalItens
+            );
+
+            printf(
+            "\nBuscar item: "
+            );
+
+            scanf(
+            " %[^\n]",
+            nomeBusca
+        );
+
+            int pos =
+            buscaBinaria(
+            mochila,
+            totalItens,
+            nomeBusca
+        );
+
+    if(pos != -1) {
+
+        printf(
+        "\n===== ITEM ENCONTRADO =====\n"
+        );
+
+        printf(
+        "Nome: %s\n",
+        mochila[pos].nome
+        );
+
+        printf(
+        "Tipo: %s\n",
+        mochila[pos].tipo
+        );
+
+        printf(
+        "Quantidade: %d\n",
+        mochila[pos].quantidade
+        );
+
+    } else {
+
+        printf(
+        "\nItem nao encontrado no vetor.\n"
+        );
+    }
+
+    // Busca também na lista encadeada
+    buscarLista(
+    lista,
+    nomeBusca
+    );
+
+    break;
+
+            case 4:
+
+                listarLista(
+                lista
+                );
+
+                break;
+        }
+
+    } while(opcao!=0);
+
+    return 0;
+}
