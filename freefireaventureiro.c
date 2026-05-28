@@ -116,3 +116,166 @@ void removerItem(struct Item mochila[], int *totalItens) {
     *totalItens
     );
 }
+
+// ===============================
+// ORDENAÇÃO + BUSCA BINÁRIA
+// ===============================
+
+void ordenarItens(
+struct Item mochila[],
+int total
+) {
+
+    struct Item aux;
+
+    for(
+    int i=0;
+    i<total-1;
+    i++
+    ) {
+
+        for(
+        int j=0;
+        j<total-1-i;
+        j++
+        ) {
+
+            if(
+            strcmp(
+            mochila[j].nome,
+            mochila[j+1].nome
+            ) > 0
+            ) {
+
+                aux=
+                mochila[j];
+
+                mochila[j]=
+                mochila[j+1];
+
+                mochila[j+1]=
+                aux;
+            }
+        }
+    }
+}
+
+int buscaBinaria(
+struct Item mochila[],
+int total,
+char nome[]
+) {
+
+    int inicio=0;
+    int fim=total-1;
+
+    while(inicio<=fim) {
+
+        int meio=
+        (inicio+fim)/2;
+
+        int comp=
+        strcmp(
+        mochila[meio].nome,
+        nome
+        );
+
+        if(comp==0)
+            return meio;
+
+        if(comp<0)
+            inicio=meio+1;
+
+        else
+            fim=meio-1;
+    }
+
+    return -1;
+}
+
+// ===============================
+// FUNÇÕES DA LISTA ENCADEADA
+// ===============================
+
+// Inserção
+void inserirLista(
+struct No **inicio,
+struct Item item
+) {
+
+    struct No *novo=
+    malloc(sizeof(struct No));
+
+    novo->dado=item;
+
+    novo->prox=
+    *inicio;
+
+    *inicio=novo;
+}
+
+// Listagem
+void listarLista(
+struct No *inicio
+) {
+
+    printf(
+    "\n===== LISTA ENCADEADA =====\n"
+    );
+
+    while(
+    inicio!=NULL
+    ) {
+
+        printf(
+        "\nNome: %s",
+        inicio->dado.nome
+        );
+
+        printf(
+        "\nTipo: %s",
+        inicio->dado.tipo
+        );
+
+        printf(
+        "\nQuantidade: %d\n",
+        inicio->dado.quantidade
+        );
+
+        inicio=
+        inicio->prox;
+    }
+}
+
+// Busca
+void buscarLista(
+struct No *inicio,
+char nome[]
+) {
+
+    while(
+    inicio!=NULL
+    ) {
+
+        if(
+        strcmp(
+        inicio->dado.nome,
+        nome
+        )==0
+        ) {
+
+            printf(
+            "\nEncontrado na lista!\n"
+            );
+
+            return;
+        }
+
+        inicio=
+        inicio->prox;
+    }
+
+    printf(
+    "\nNao encontrado\n"
+    );
+}
